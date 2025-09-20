@@ -40,6 +40,9 @@ jobs:
         git commit -m "Update playlists" || echo "No changes to commit"
 
         # Force push to the main branch
-        git push -f origin main
+        for file in playlist.m3u8 vlc_playlist.m3u8 kodi_playlist.m3u8 proxied_playlist.m3u8 tivimate_playlist.m3u8 epg.xml streamed_su.json
+do
+  [ -f "$file" ] && git add "$file"
+done
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
